@@ -1,4 +1,3 @@
-
 class Barang:
     def __init__(self,nama_barang,jumlah_barang,harga_barang):
         self.nama_barang = nama_barang
@@ -48,9 +47,9 @@ class Makanan(Barang):
         self.nomor_barcode = nomor_Barcode
         self.tgl_expired = tgl_Expired
 
-    def tampilkanData(self, x):
-        self.x = x
-        if x == None:
+    def tampilkanData(self, seri):
+        self.seri = seri
+        if seri == "-":
             print("Nomor Barcode :", self.nomor_barcode)
             print("Nama Barang :", self.nama_barang)
             print("Jumlah Barang :", self.jumlah_barang)
@@ -62,11 +61,4 @@ class Makanan(Barang):
             print("Jumlah Barang :", self.jumlah_barang)
             print("Harga Barang :", self.harga_barang)
             print("Tanggal Expired :", self.tgl_expired)
-            print("No Seri :", self.x)
-
-
-#Barang1 = Eletronik(input("Masukkan Nama Barang : "), input("Masukkan Jumlah Barang: "), input("Masukkan Harga Barang: "), input("Masukkan Tanggal Garansi: "), input("Masukkan No.Seri: "))
-#print(Barang1.tampilkanData())
-
-Barang2 = Makanan(input("Masukkan Nama Barang : "), input("Masukkan Jumlah Barang: "), input("Masukkan Harga Barang: "), input("Masukkan id Makanan: "), input("Masukkan Tanggal Expired: "))
-print(Barang2.tampilkanData(input("Masukkan seri:")))
+            print("No Seri :", self.seri)
