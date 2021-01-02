@@ -35,8 +35,8 @@ def melihat_pegawai_dari_nama(nama):
 def update_nama_pegawai(pegawai, nama):
     with conn:
         c.execute("""UPDATE pegawai SET nama = :nama
-        WHERE id = :id AND alamat = :alamat""",
-        {'id': pegawai._id, 'nama': nama, 'alamat': pegawai._alamat})
+        WHERE id = :id""",
+        {'id': pegawai._id, 'nama': nama})
 
 def hapus_pegawai(pegawai):
     with conn:
