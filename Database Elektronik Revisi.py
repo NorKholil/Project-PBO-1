@@ -31,39 +31,32 @@ def update_nama_barang(elektronik, nama_barang):
     with conn:
         c.execute("""UPDATE elektronik SET nama_barang = :nama_barang
         WHERE no_seri = :no_seri""",
-        {'nama_barang': elektronik.nama_barang, 'jumlah_barang': elektronik.jumlah_barang, 'harga_barang': elektronik.harga_barang, 'tgl_garansi': elektronik.tgl_garansi, 'no_seri': elektronik.no_seri})
+        {'nama_barang': nama_barang, 'jumlah_barang': elektronik.jumlah_barang, 'harga_barang': elektronik.harga_barang, 'tgl_garansi': elektronik.tgl_garansi, 'no_seri': elektronik.no_seri})
 
 def update_jumlah_barang(elektronik, jumlah_barang):
     with conn:
         c.execute("""UPDATE elektronik SET jumlah_barang = :jumlah_barang
         WHERE no_seri = :no_seri""",
-        {'nama_barang': elektronik.nama_barang, 'jumlah_barang': elektronik.jumlah_barang, 'harga_barang': elektronik.harga_barang, 'tgl_garansi': elektronik.tgl_garansi, 'no_seri': elektronik.no_seri})
+        {'nama_barang': elektronik.nama_barang, 'jumlah_barang': jumlah_barang, 'harga_barang': elektronik.harga_barang, 'tgl_garansi': elektronik.tgl_garansi, 'no_seri': elektronik.no_seri})
 
 
 def update_harga_barang(elektronik, harga_barang):
     with conn:
         c.execute("""UPDATE elektronik SET harga_barang = :harga_barang
         WHERE no_seri = :no_seri""",
-        {'nama_barang': elektronik.nama_barang, 'jumlah_barang': elektronik.jumlah_barang, 'harga_barang': elektronik.harga_barang, 'tgl_garansi': elektronik.tgl_garansi, 'no_seri': elektronik.no_seri})
+        {'nama_barang': elektronik.nama_barang, 'jumlah_barang': elektronik.jumlah_barang, 'harga_barang': harga_barang, 'tgl_garansi': elektronik.tgl_garansi, 'no_seri': elektronik.no_seri})
 
 
 def update_tgl_garansi(elektronik, tgl_garansi):
     with conn:
         c.execute("""UPDATE elektronik SET tgl_garansi = :tgl_garansi
         WHERE no_seri = :no_seri""",
-        {'nama_barang': elektronik.nama_barang, 'jumlah_barang': elektronik.jumlah_barang, 'harga_barang': elektronik.harga_barang, 'tgl_garansi': elektronik.tgl_garansi, 'no_seri': elektronik.no_seri})
-
-def update_no_seri(elektronik, no_seri):
-    with conn:
-        c.execute("""UPDATE elektronik SET no_seri = :no_seri
-        WHERE no_seri = :no_seri""",
-        {'nama_barang': elektronik.nama_barang, 'jumlah_barang': elektronik.jumlah_barang, 'harga_barang': elektronik.harga_barang, 'tgl_garansi': elektronik.tgl_garansi, 'no_seri': elektronik.no_seri})
-
+        {'nama_barang': elektronik.nama_barang, 'jumlah_barang': elektronik.jumlah_barang, 'harga_barang': elektronik.harga_barang, 'tgl_garansi': tgl_garansi, 'no_seri': elektronik.no_seri})
 
 def hapus_elektronik(elektronik):
     with conn:
-        c.execute("DELETE from elektronik WHERE id = :id AND nama = :nama",
-        {'id': elektronik._id, 'nama': elektronik._nama})
+        c.execute("DELETE from elektronik WHERE no_seri = :no_seri"
+        {'no_seri': elektronik.no_seri})
 
 melihat_isi_tabel()
 

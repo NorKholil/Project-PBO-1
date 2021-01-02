@@ -6,7 +6,7 @@ conn = sqlite3.connect("Database Makanan")
 c = conn.cursor()
 
 ###INI MEMBUAT TABEL###
-# c.execute("""CREATE TABLE makanan(nama_barang text, jumlah_barang integer, harga_barang integer, nomor_barcode text, tgl_expired text) """)
+# c.execute("""CREATE TABLE makanan(nama_barang text, jumlah_barang integer, harga_barang integer, nomor_barcode primary key, tgl_expired text) """)
 
 
 makanan1 = makanan('Oreo', 2, 10000, '222333', '12-10-2021')
@@ -30,37 +30,37 @@ def melihat_makanan_berdasarkan_nama(nama_barang):
 def update_nama_barang(makanan, nama_barang):
     with conn:
         c.execute("""UPDATE makanan SET nama_barang = :nama_barang
-        WHERE nama_barang, :jumlah_barang, :harga_barang""",
-        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
+        WHERE nomor_barcode = :nomor_barcode""",
+        {'nama_barang': nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
 
 def update_jumlah_barang(makanan, jumlah_barang):
     with conn:
         c.execute("""UPDATE makanan SET jumlah_barang = :jumlah_barang
-        WHERE nama_barang, :jumlah_barang, :harga_barang""",
-        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
+        WHEREnomor_barcode = :nomor_barcode""",
+        {'nama_barang': makanan.nama_barang, 'jumlah_barang': jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
 
 def update_harga_barang(makanan, harga_barang):
     with conn:
         c.execute("""UPDATE makanan SET harga_barang = :harga_barang
-        WHERE nama_barang, :jumlah_barang, :harga_barang""",
-        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
+        WHERE nomor_barcode = :nomor_barcode""",
+        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
 
 def update_nomor_barcode(makanan, nomor_barcode):
     with conn:
         c.execute("""UPDATE makanan SET nomor_barcode = :nomor_barcode
-        WHERE nama_barang, :jumlah_barang, :harga_barang""",
-        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
+        WHERE nomor_barcode = :nomor_barcode""",
+        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': nomor_barcode, 'tgl_expired': makanan.tgl_expired})
 
 def update_tgl_expired(makanan, tgl_expired):
     with conn:
         c.execute("""UPDATE makanan SET tgl_expired = :tgl_expired
-        WHERE nama_barang, :jumlah_barang, :harga_barang""",
-        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
+        WHERE nomor_barcode = :nomor_barcode""",
+        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': tgl_expired})
 
 def hapus_barang(makanan):
     with conn:
-        c.execute("DELETE from makanan WHERE :nama_barang, :jumlah_barang, :harga_barang",
-        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
+        c.execute("DELETE from makanan WHERE nomor_barcode = :nomor_barcode",
+        {'nomor_barcode': makanan.nomor_barcode})
 
 
 # menambah_makanan(makanan1)
@@ -68,7 +68,11 @@ def hapus_barang(makanan):
 # menambah_makanan(makanan3)
 # menambah_makanan(makanan4)
 # menambah_makanan(makanan5)
-melihat_isi_tabel()
+melihat_isi_tabel ()
+# hapus_barang(makanan1)
+# hapus_barang(makanan2)
+# hapus_barang(makanan3)
+
 
 conn.commit()
 
