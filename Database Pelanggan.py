@@ -29,20 +29,20 @@ def melihat_pelanggan_dari_nama(nama):
 def update_nama_pelanggan(pelanggan, nama):
     with conn:
         c.execute("""UPDATE pelanggan SET nama = :nama
-        WHERE id = :id AND alamat = :alamat""",
-        {'id': pelanggan._id, 'nama': nama, 'alamat': pelanggan._alamat, 'email': pelanggan._email})
+        WHERE id = :id """,
+        {'id': pelanggan._id, 'nama': nama})
 
 def update_alamat_pelanggan(pelanggan, alamat):
     with conn:
         c.execute("""UPDATE pelanggan SET alamat = :alamat
-        WHERE id = :id AND nama = :nama""",
-        {'id': pelanggan._id, 'nama': pelanggan._nama, 'alamat': alamat, 'email': pelanggan._email})
+        WHERE id = :id""",
+        {'id': pelanggan._id, 'alamat': alamat})
 
 def update_email_pelanggan(pelanggan, email):
     with conn:
         c.execute("""UPDATE pelanggan SET email = :email
-        WHERE id = :id AND alamat = :alamat""",
-        {'id': pelanggan._id, 'nama': pelanggan._nama, 'alamat': pelanggan._alamat, 'email': email})
+        WHERE id = :id""",
+        {'id': pelanggan._id, 'email': email})
 
 def hapus_pelanggan(pelanggan):
     with conn:
