@@ -24,7 +24,7 @@ def menambah_pegawai(pegawai):
     with conn:
         c.execute("INSERT INTO pegawai VALUES (:id, :nama, :alamat)", {'id': pegawai._id, 'nama': pegawai._nama, 'alamat': pegawai._alamat})
 
-def melihat_isi_tabel():
+def melihat_isi_tabel_pegawai():
     c.execute("SELECT * FROM pegawai")
     print(c.fetchall()) 
 
@@ -32,26 +32,17 @@ def melihat_pegawai_dari_nama(nama):
     c.execute("SELECT * FROM pegawai WHERE nama = :nama", {'nama': nama})
     return c.fetchall()
 
-def update_nama(pegawai, nama):
+def update_nama_pegawai(pegawai, nama):
     with conn:
         c.execute("""UPDATE pegawai SET nama = :nama
         WHERE id = :id AND alamat = :alamat""",
-        {'id': pegawai._id, 'nama': pegawai._nama, 'alamat': pegawai._alamat})
+        {'id': pegawai._id, 'nama': nama, 'alamat': pegawai._alamat})
 
 def hapus_pegawai(pegawai):
     with conn:
-        c.execute("DELETE from pegawai WHERE id = :id AND nama = :nama",
-        {'id': pegawai._id, 'nama': pegawai._nama})
+        c.execute("DELETE from pegawai WHERE id = :id",
+        {'id': pegawai._id})
 
-
-#menambah_pegawai(aktor4)
-#menambah_pegawai(aktor5)
-
-melihat_isi_tabel()
-
-hapus_pegawai(aktor5)
-
-melihat_isi_tabel()
 conn.commit()
 
 conn.close()

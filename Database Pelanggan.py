@@ -18,7 +18,7 @@ def menambah_pelanggan(pelanggan):
     with conn:
         c.execute("INSERT INTO pelanggan VALUES (:id, :nama, :alamat, :email)", {'id': pelanggan._id, 'nama': pelanggan._nama, 'alamat': pelanggan._alamat, 'email': pelanggan._email})
 
-def melihat_isi_tabel():
+def melihat_isi_tabel_pelanggan():
     c.execute("SELECT * FROM pelanggan")
     print(c.fetchall()) 
 
@@ -30,24 +30,24 @@ def update_nama_pelanggan(pelanggan, nama):
     with conn:
         c.execute("""UPDATE pelanggan SET nama = :nama
         WHERE id = :id AND alamat = :alamat""",
-        {'id': pelanggan._id, 'nama': pelanggan._nama, 'alamat': pelanggan._alamat, 'email': pelanggan._email})
+        {'id': pelanggan._id, 'nama': nama, 'alamat': pelanggan._alamat, 'email': pelanggan._email})
 
 def update_alamat_pelanggan(pelanggan, alamat):
     with conn:
         c.execute("""UPDATE pelanggan SET alamat = :alamat
         WHERE id = :id AND nama = :nama""",
-        {'id': pelanggan._id, 'nama': pelanggan._nama, 'alamat': pelanggan._alamat, 'email': pelanggan._email})
+        {'id': pelanggan._id, 'nama': pelanggan._nama, 'alamat': alamat, 'email': pelanggan._email})
 
 def update_email_pelanggan(pelanggan, email):
     with conn:
         c.execute("""UPDATE pelanggan SET email = :email
         WHERE id = :id AND alamat = :alamat""",
-        {'id': pelanggan._id, 'nama': pelanggan._nama, 'alamat': pelanggan._alamat, 'email': pelanggan._email})
+        {'id': pelanggan._id, 'nama': pelanggan._nama, 'alamat': pelanggan._alamat, 'email': email})
 
 def hapus_pelanggan(pelanggan):
     with conn:
-        c.execute("DELETE from pelanggan WHERE id = :id AND nama = :nama",
-        {'id': pelanggan._id, 'nama': pelanggan._nama})
+        c.execute("DELETE from pelanggan WHERE id = :id",
+        {'id': pelanggan._id})
 
 conn.commit()
 
