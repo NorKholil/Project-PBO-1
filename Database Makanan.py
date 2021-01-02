@@ -19,7 +19,7 @@ def menambah_makanan(makanan):
     with conn:
         c.execute("INSERT INTO makanan VALUES (:nama_barang, :jumlah_barang, :harga_barang, :nomor_barcode, :tgl_expired)", {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
 
-def melihat_isi_tabel():
+def melihat_isi_tabel_makanan():
     c.execute("SELECT * FROM makanan")
     print(c.fetchall()) 
 
@@ -27,52 +27,40 @@ def melihat_makanan_berdasarkan_nama(nama_barang):
     c.execute("SELECT * FROM makanan WHERE nama_barang = :nama_barang", {'nama_barang': nama_barang})
     return c.fetchall()
 
-def update_nama_barang(makanan, nama_barang):
+def update_nama_makanan(makanan, nama_barang):
     with conn:
         c.execute("""UPDATE makanan SET nama_barang = :nama_barang
         WHERE nomor_barcode = :nomor_barcode""",
         {'nama_barang': nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
 
-def update_jumlah_barang(makanan, jumlah_barang):
+def update_jumlah_makanan(makanan, jumlah_barang):
     with conn:
         c.execute("""UPDATE makanan SET jumlah_barang = :jumlah_barang
-        WHEREnomor_barcode = :nomor_barcode""",
+        WHERE nomor_barcode = :nomor_barcode""",
         {'nama_barang': makanan.nama_barang, 'jumlah_barang': jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
 
-def update_harga_barang(makanan, harga_barang):
+def update_harga_makanan(makanan, harga_barang):
     with conn:
         c.execute("""UPDATE makanan SET harga_barang = :harga_barang
         WHERE nomor_barcode = :nomor_barcode""",
         {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': makanan.tgl_expired})
 
-def update_nomor_barcode(makanan, nomor_barcode):
-    with conn:
-        c.execute("""UPDATE makanan SET nomor_barcode = :nomor_barcode
-        WHERE nomor_barcode = :nomor_barcode""",
-        {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': nomor_barcode, 'tgl_expired': makanan.tgl_expired})
-
-def update_tgl_expired(makanan, tgl_expired):
+def update_tgl_expired_makanan(makanan, tgl_expired):
     with conn:
         c.execute("""UPDATE makanan SET tgl_expired = :tgl_expired
         WHERE nomor_barcode = :nomor_barcode""",
         {'nama_barang': makanan.nama_barang, 'jumlah_barang': makanan.jumlah_barang, 'harga_barang': makanan.harga_barang, 'nomor_barcode': makanan.nomor_barcode, 'tgl_expired': tgl_expired})
 
-def hapus_barang(makanan):
+def hapus_makanan(makanan):
     with conn:
         c.execute("DELETE from makanan WHERE nomor_barcode = :nomor_barcode",
         {'nomor_barcode': makanan.nomor_barcode})
-
 
 # menambah_makanan(makanan1)
 # menambah_makanan(makanan2)
 # menambah_makanan(makanan3)
 # menambah_makanan(makanan4)
 # menambah_makanan(makanan5)
-melihat_isi_tabel ()
-# hapus_barang(makanan1)
-# hapus_barang(makanan2)
-# hapus_barang(makanan3)
-
 
 conn.commit()
 
