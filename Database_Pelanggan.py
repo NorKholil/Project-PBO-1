@@ -1,0 +1,88 @@
+import sqlite3
+from Aktor import Pelanggan as pelanggan
+
+conn = sqlite3.connect("Database XXX")
+
+c = conn.cursor()
+
+###INI MEMBUAT TABEL###
+#c.execute("""CREATE TABLE pelanggan(id integer primary key, nama text, alamat text, email text) """)
+
+pelanggan1 = pelanggan(2, 'Rado', 'Jember', 'Rado123@gmail.com')
+pelanggan2 = pelanggan(3, 'Radi', 'Jember', 'Radi123@gmail.com')
+pelanggan3 = pelanggan(4, 'Radeon', 'Jember', 'Radeon123@gmail.com')
+pelanggan4 = pelanggan(5, 'Radiant', 'Jember', 'Radiant123@gmail.com')
+pelanggan5 = pelanggan(6, 'Radiance', 'Jember', 'Radiance123@gmail.com')
+
+def menambah_pelanggan(pelanggan):
+    conn = sqlite3.connect("Database XXX")
+
+    c = conn.cursor()
+
+    with conn:
+        c.execute("INSERT INTO pelanggan VALUES (:id, :nama, :alamat, :email)", {'id': pelanggan._id, 'nama': pelanggan._nama, 'alamat': pelanggan._alamat, 'email': pelanggan._email})
+
+
+def melihat_isi_tabel_pelanggan():
+    conn = sqlite3.connect("Database XXX")
+
+    c = conn.cursor()
+
+    c.execute("SELECT * FROM pelanggan")
+    print(c.fetchall()) 
+
+
+def melihat_pelanggan_dari_nama(nama):
+    conn = sqlite3.connect("Database XXX")
+
+    c = conn.cursor()
+
+    c.execute("SELECT * FROM pelanggan WHERE nama = :nama", {'nama': nama})
+    return c.fetchall()
+
+
+def update_nama_pelanggan(pelanggan, nama):
+    conn = sqlite3.connect("Database XXX")
+
+    c = conn.cursor()
+
+    with conn:
+        c.execute("""UPDATE pelanggan SET nama = :nama
+        WHERE id = :id """,
+        {'id': pelanggan._id, 'nama': nama})
+
+
+def update_alamat_pelanggan(pelanggan, alamat):
+    conn = sqlite3.connect("Database XXX")
+
+    c = conn.cursor()
+
+    with conn:
+        c.execute("""UPDATE pelanggan SET alamat = :alamat
+        WHERE id = :id""",
+        {'id': pelanggan._id, 'alamat': alamat})
+
+
+def update_email_pelanggan(pelanggan, email):
+    conn = sqlite3.connect("Database XXX")
+
+    c = conn.cursor()
+
+    with conn:
+        c.execute("""UPDATE pelanggan SET email = :email
+        WHERE id = :id""",
+        {'id': pelanggan._id, 'email': email})
+
+
+def hapus_pelanggan(pelanggan):
+    conn = sqlite3.connect("Database XXX")
+
+    c = conn.cursor()
+
+    with conn:
+        c.execute("DELETE from pelanggan WHERE id = :id",
+        {'id': pelanggan._id})
+
+conn.commit()
+
+conn.close()
