@@ -22,6 +22,24 @@ def menampilkanMenu():
     print('|----------------------------------------|')
 
     pilihan = str (input('Masukkan pilihan: '))
+    if pilihan == "1" :
+            harga = ''
+            def melihatHarga(nama):
+                harga = Database_Makanan.melihat_makanan_berdasarkan_nama(nama)
+                return harga
+
+            harga = melihatHarga(str(input("Maksukkan Nama Makanan:")))
+            print(harga[0][2])
+
+            x = int(input("Masukkan Jumlah Makanan:"))
+            jmlh = x * harga
+            total = jmlh
+            print ('')
+            print ('Harga Makanan='), harga
+            print ('Total Makanan = Rp '),jmlh
+            print ('___________________________________+')
+            print ('Total Seluruhnya = Rp '), total
+            return jmlh
     if pilihan == "3" :
         print("---Data Makanan---\n")
         print(Database_Makanan.melihat_isi_tabel_makanan())
